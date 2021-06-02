@@ -14,21 +14,23 @@ SRCS_B	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c
 OBJS	= $(SRCS:.c=.o)
 OBJS_B	= $(SRCS_B:.c=.o)
 
-CC	= cc
+CC	= gcc
 CFLAGS	= -Wall -Wextra -Werror
 
 .c.o:
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+			@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			ar rc $(NAME) $(OBJS)
-			ranlib $(NAME)
+			@echo "\033[1;93mlibft compilation\033[0;m"
+			@ar -rcs $(NAME) $(OBJS)
+			@echo "\033[1;92mlibft compiled\033[0;m"
 
 bonus:		$(NAME) $(OBJS_B)
-			ar rc $(NAME) $(OBJS) $(OBJS_B)
-			ranlib $(NAME)
+			@echo "\033[1;93mlibft with bonuses compilation\033[0;m"
+			@ar -rcs $(NAME) $(OBJS) $(OBJS_B)
+			@echo "\033[1;92mlibft with bonuses compiled\033[0;m"
 clean:
 			rm -f $(OBJS_B)
 
