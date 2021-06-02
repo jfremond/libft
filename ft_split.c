@@ -6,13 +6,13 @@
 /*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 19:47:42 by jfremond          #+#    #+#             */
-/*   Updated: 2020/10/31 15:37:15 by jfremond         ###   ########.fr       */
+/*   Updated: 2021/06/02 10:27:35 by jfremond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_words(char const *s, char c)
+static int	count_words(const char *s, char c)
 {
 	int	i;
 	int	words;
@@ -28,6 +28,19 @@ static int	ft_words(char const *s, char c)
 		i++;
 	}
 	return (words);
+}
+
+static int	len_words(const char *s, char c)
+{
+	int	count;
+
+	count = 0;
+	while (*s && *s != c)
+	{
+		s++;
+		count++;
+	}
+	return (count);
 }
 
 static char	**ft_free_split(char **tab)
@@ -47,28 +60,30 @@ static char	**ft_free_split(char **tab)
 	return (NULL);
 }
 
-char		**ft_split(char const *s, char c)
+char		**ft_split(const char *s, char c)
 {
 	int		i;
 	int		j;
-	int		begin;
 	char	**tab;
 
-	i = 0;
 	j = 0;
-	tab = (char **)malloc(sizeof(char *) * (ft_words(s, c) + 1));
+	tab = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!s || !tab)
-		return (ft_free_split(tab));
-	while (s[i])
+		return (NULL);
+	while (*s)
 	{
-		while (s[i] && s[i] == c)
-			i++;
-		begin = i;
-		while (s[i] && s[i] != c)
-			i++;
-		tab[j++] = ft_substr(s, begin, i - begin);
-		if (s[begin] && !tab[j++])
-			return (ft_free_split(tab));
+		while (*s && *s == c)
+			s++;
+		if (*s && *s != c)
+		{
+			i = 0;
+			tab[j] = (char *)malloc(sizeof(*s) * (len_words(s, c) + 1));
+			if (!tab[j])
+				return (ft_free_split(tab));
+			while (*s && *s != c)
+				tab[j][i++] = (char)*s++;
+			tab[j++][i] = '\0'; 
+		}
 	}
 	tab[j] = NULL;
 	return (tab);
