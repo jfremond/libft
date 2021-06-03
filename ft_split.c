@@ -6,7 +6,7 @@
 /*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 19:47:42 by jfremond          #+#    #+#             */
-/*   Updated: 2021/06/02 10:27:35 by jfremond         ###   ########.fr       */
+/*   Updated: 2021/06/03 10:19:18 by jfremond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static char	**ft_free_split(char **tab)
 	return (NULL);
 }
 
-char		**ft_split(const char *s, char c)
+char	**ft_split(const char *s, char c)
 {
 	int		i;
 	int		j;
@@ -82,7 +82,7 @@ char		**ft_split(const char *s, char c)
 				return (ft_free_split(tab));
 			while (*s && *s != c)
 				tab[j][i++] = (char)*s++;
-			tab[j++][i] = '\0'; 
+			tab[j++][i] = '\0';
 		}
 	}
 	tab[j] = NULL;
