@@ -6,7 +6,7 @@
 /*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 00:11:53 by jfremond          #+#    #+#             */
-/*   Updated: 2020/04/30 01:14:46 by jfremond         ###   ########.fr       */
+/*   Updated: 2022/08/30 12:39:50 by jfremond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,20 @@ char	*ft_strrchr(const char *s, int c)
 	if (s[len] == c)
 		return ((char *)&s[len]);
 	return (NULL);
+}
+
+int		is_in_str(char *str, char c)
+{
+	int i;
+	int res;
+
+	i = 0;
+	res = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			res = 1;
+		i++;
+	}
+	return (res);
 }
