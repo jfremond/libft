@@ -6,7 +6,7 @@
 /*   By: jfremond <jfremond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 19:47:42 by jfremond          #+#    #+#             */
-/*   Updated: 2021/06/03 10:19:18 by jfremond         ###   ########.fr       */
+/*   Updated: 2022/02/21 17:32:30 by jfremond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	count_words(const char *s, char c)
 	return (words);
 }
 
-static int	len_words(const char *s, char c)
+static int	len_word(const char *s, char c)
 {
 	int	count;
 
@@ -77,7 +77,7 @@ char	**ft_split(const char *s, char c)
 		if (*s && *s != c)
 		{
 			i = 0;
-			tab[j] = (char *)malloc(sizeof(*s) * (len_words(s, c) + 1));
+			tab[j] = (char *)malloc(sizeof(*s) * (len_word(s, c) + 1));
 			if (!tab[j])
 				return (ft_free_split(tab));
 			while (*s && *s != c)
